@@ -1,49 +1,79 @@
 <template>
-    <h1>HelloooooWorld</h1>
-    <div class="slds-grid slds-gutters">
-        <div class="slds-col">
-                        <fieldset class="slds-form-element slds-form-element_compound">
-        <h1 class="slds-form-element__legend slds-form-element__label">Forms</h1>
-        <div class="slds-form-element__control">
-          <div class="slds-form-element__row">
-            <div class="slds-size_1-of-2">
-              <div class="slds-form-element">
-                <label class="slds-form-element__label" for="input-01">Name</label>
-                <div class="slds-form-element__control">
-                  <input type="text" id="input-01" class="slds-input" />
-                </div>
+  <div class="slds-grid slds-gutters">
+      <div class="slds-col slds-size_1-of-2">
+          <fieldset class="slds-form-element slds-form-element_compound">
+              <h1 class="slds-form-element__legend slds-form-element__label">Forms</h1>
+              <div class="slds-form-element__control">
+                  <div class="slds-form-element__row">
+                      <div class="slds-size_1-of-2">
+                          <div class="slds-form-element">
+                              <label class="slds-form-element__label" for="name">Name</label>
+                              <div class="slds-form-element__control">
+                                  <input type="text" id="name" class="slds-input" value={name} oninput={handleNameChange} />
+                              </div>
+                          </div>
+                      </div>
+                      <div class="slds-size_1-of-2">
+                          <div class="slds-form-element">
+                              <label class="slds-form-element__label" for="surname">Surname</label>
+                              <div class="slds-form-element__control">
+                                  <input type="text" id="surname" class="slds-input" value={surname} oninput={handleSurnameChange} />
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="slds-form-element__row">
+                      <div class="slds-size_1-of-2">
+                          <div class="slds-form-element">
+                              <label class="slds-form-element__label" for="phone">Phone</label>
+                              <div class="slds-form-element__control">
+                                  <input required type="text" id="phone" class="slds-input" value={phone} oninput={handlePhoneChange} pattern="[0-9]*"  />
+                              </div>
+                              <div class="slds-form-element__help" if:true={showPhoneError}>Please enter a valid phone number (digits only).</div>
+                          </div>
+                      </div>
+                      <div class="slds-size_1-of-2">
+                          <div class="slds-form-element">
+                              <label class="slds-form-element__label" for="email">Email</label>
+                              <div class="slds-form-element__control">
+                                  <input required type="text" id="email" class="slds-input" value={email} oninput={handleEmailChange} pattern=".+@.+\..+"
+
+                                 />
+                              </div>
+                              <div class="slds-form-element__help" if:true={showEmailError}>Please enter a valid email address.</div>
+                          </div>
+                      </div>
+                  </div>
               </div>
-            </div>
-            <div class="slds-size_1-of-2">
-              <div class="slds-form-element">
-                <label class="slds-form-element__label" for="input-02">Surname</label>
-                <div class="slds-form-element__control">
-                  <input type="text" id="input-02" class="slds-input" />
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="slds-form-element__row">
-            <div class="slds-size_1-of-2">
-              <div class="slds-form-element">
-                <label class="slds-form-element__label" for="input-01">Phone</label>
-                <div class="slds-form-element__control">
-                  <input type="text" id="input-03" class="slds-input" />
-                </div>
-              </div>
-            </div>
-            <div class="slds-size_1-of-2">
-              <div class="slds-form-element">
-                <label class="slds-form-element__label" for="input-02">Email</label>
-                <div class="slds-form-element__control">
-                  <input type="text" id="input-04" class="slds-input" />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <button class="slds-button slds-button_neutral">Validate</button>
-                    </fieldset>
+              <lightning-button label="Add Record" onclick={handleAddRecord} disabled={isAddButtonDisabled}></lightning-button>
+
+
+
+          </fieldset>
       </div>
-    </div>
+  </div>
+
+  <div>
+      <h2>Records</h2>
+      <table class="slds-col slds-size_1-of-2 slds-table slds-table_bordered slds-table_cell-buffer">
+          <thead>
+              <tr>
+                  <th>Name</th>
+                  <th>Surname</th>
+                  <th>Phone</th>
+                  <th>Email</th>
+              </tr>
+          </thead>
+          <tbody>
+              <template for:each={customers} for:item="customer">
+                  <tr key={customer.id}>
+                      <td>{customer.name}</td>
+                      <td>{customer.surname}</td>
+                      <td>{customer.phone}</td>
+                      <td>{customer.email}</td>
+                  </tr>
+              </template>
+          </tbody>
+      </table>
+  </div>
 </template>
