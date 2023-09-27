@@ -1,5 +1,6 @@
 <template>
-  <div class="slds-grid slds-gutters">
+  <lightning-card title="Lightning Web Component" icon-name="custom:custom14">
+  <div class="slds-grid slds-gutters slds-var-m-around_medium">
       <div class="slds-col slds-size_1-of-2">
           <fieldset class="slds-form-element slds-form-element_compound">
               <h1 class="slds-form-element__legend slds-form-element__label">Forms</h1>
@@ -67,13 +68,14 @@
           <tbody>
               <template for:each={customers} for:item="customer">
                   <tr key={customer.id}>
-                      <td>{customer.name}</td>
-                      <td>{customer.surname}</td>
-                      <td>{customer.phone}</td>
-                      <td>{customer.email}</td>
+                      <td>{customer.Name__c}</td>
+                      <td>{customer.Surname__c}</td>
+                      <td>{customer.Phone__c}</td>
+                      <td>{customer.Email__c}</td>
                   </tr>
               </template>
           </tbody>
       </table>
   </div>
+</lightning-card>
 </template>
