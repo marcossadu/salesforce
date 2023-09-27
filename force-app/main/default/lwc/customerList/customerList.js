@@ -39,13 +39,13 @@ export default class CustomerList extends LightningElement {
     }
 
     validateAddButton() {
-        // Verificar si todos los campos están completos y no hay errores en la validación
+        // Este campo verificara si todos los campos están completos y no hay errores en la validación
         const isNameValid = this.name.trim() !== '';
         const isSurnameValid = this.surname.trim() !== '';
         const isPhoneValid = this.phone;
         const isEmailValid = this.email;
 
-        // Habilitar el botón solo si todos los campos están completos
+        // Habilitará el botón solo si todos los campos están completos
         this.isAddButtonDisabled = !(isNameValid && isSurnameValid && isPhoneValid && isEmailValid);
     }
 
